@@ -1,0 +1,30 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Moneyp BMP</title>
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
+  </head>
+  <body>
+    <div class="container">
+        <div class = "row">
+            
+            <div class="row text-center">
+                <h1>O que você deseja fazer?</h1>
+            </div>
+
+            <div class="row">
+                <div class="col"> 
+                    <div class="d-flex justify-content-center">
+                        <a href="{% url 'simulacaoProposta' %}" class="btn btn-primary">Simular Proposta</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

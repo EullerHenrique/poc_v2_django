@@ -1,0 +1,83 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simulação Proposta</title>
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
+  </head>
+  <body>
+    <div class="container">
+      <div class = "row">
+        <div class="text-center mt-2">
+          <h1>Simulação Proposta</h1>
+        </div>        
+        <div class="row mt-2">
+          <div class="col-2">
+            <label for="tipoPessoa" class="form-label">Tipo de Pessoa</label>
+            <select class="form-select" id="tipoPessoa" name="tipoPessoa" required>
+              <option value="1">Pessoa Física</option>
+              <option value="2">Pessoa Jurídica</option>
+            </select>
+          </div>
+          <div class="col-2">             
+            <label for="vlrSolicitado" class="form-label">Valor Solicitado</label>
+            <input type="number" class="form-control" id="vlrSolicitado" name="vlrSolicitado" required min="1" placeholder="R$">
+          </div>
+          <div class="col-2">
+              <label for="nroDiasAcrescimo" class="form-label">Dias de Acréscimo</label>
+              <input type="number" class="form-control" id="nroDiasAcrescimo" name="nroDiasAcrescimo" required min="0">
+          </div>
+          <div class="col-2">
+              <label for="percJurosNegociado" class="form-label">Juros</label>
+              <input type="number" class="form-control" id="percJurosNegociado" name="percJurosNegociado" required min="0" placeholder="%">
+          </div>
+          <div class="col-2">
+            <label for="vlrTAC" class="form-label">TAC</label>
+            <input type="number" class="form-control form-optional" id="vlrTAC" name="vlrTAC" min="0" placeholder="0">
+          </div>
+          <div class="col-2" style="margin-top: 30px;">
+            <button type="button" class="btn btn-primary" style="width: 100%;" data-endpoint="{% url 'simulacaoPropostaRealizar' %}" data-crsftoken = '{{ csrf_token }}' id="botaoRealizarSimulacao">Realizar Simulação</button>            
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-12">
+            <hr style="border-top: 1px solid #ccc;">
+          </div>
+        </div>
+        <div class="row mt-2" id="resultadoSimulacao" style="display: none;">
+          <div class="col-auto ms-auto"> 
+              <button type="button" class="btn btn-success" style="width: 100%;" data-endpoint="{% url 'gerarExcelSimulacaoProposta' %}" data-crsftoken = '{{ csrf_token }}' id="botaoGerarExcel">Gerar Excel</button>            
+          </div>
+          <div class="col-12 mt-2">
+            <table class="table table-striped" id="tabelaParcelas">
+              <thead>
+                <tr>
+                  <th>Valor Solicitado</th>
+                  <th>Prazo</th>
+                  <th>Parcela</th>
+                  <th>TAC</th>
+                  <th>Boleto</th>
+                  <th>Seguro</th>
+                  <th>IOF</th>
+                  <th>IOF(%)</th>
+                  <th>Total Crédito</th>
+                  <th>Total Dívida</th>
+                  <th>CET Mensal(%)</th>
+                  <th>CET Anual(%) </th>
+                  <th>Juros Mensal(%) </th>
+                  <th>Juros Anual(%)</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/util/util.js' %}"></script>
+    <script src="{% static 'js/ajax/proposta/simulacao/simulacaoPropostaAjax.js' %}"></script>
+  </body>
+</html>
